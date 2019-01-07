@@ -5,12 +5,22 @@
 var pwd = process.argv[2]
 
 
-// check capital letters
-var allCaptials = "QWERTYUIOPASDFGHJKLZXCVBNM"
-var areThereCapitals = false
-for(var p = 0; p < pwd.length; p++) {
-  if(allCaptials.includes(pwd[p])) { // is a capital letter
-    areThereCapitals = true
+
+function areThereAny(fullset, word) {
+  var areThere = false
+  for(var p = 0; p < word.length; p++) {
+    if(fullset.includes(word[p])) { // is a capital letter
+      return true
+    }
   }
+  return false
 }
-console.log('Does it have capitals? ', areThereCapitals)
+
+
+var allCaptials = "QWERTYUIOPASDFGHJKLZXCVBNM"
+console.log('Does it have capitals? ', areThereAny(allCaptials,pwd))
+
+var allSpecials = "!@#$%^&*(){}"
+console.log('Does it have specials? ', areThereAny(allSpecials,pwd))
+
+console.log('Is it really long? ' , pwd.length>13? true:false)
